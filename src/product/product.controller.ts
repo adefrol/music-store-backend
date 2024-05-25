@@ -8,7 +8,7 @@ import { CacheInterceptor, CacheKey } from '@nestjs/cache-manager'
 
 
 @Controller('product')
-@UseInterceptors(CacheInterceptor)
+/* @UseInterceptors(CacheInterceptor) */
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
@@ -19,7 +19,7 @@ export class ProductController {
   }
 
   @Get()
-  @CacheKey("product")
+  /* @CacheKey("product") */
   findAll() {
     return this.productService.findAll();
   }
