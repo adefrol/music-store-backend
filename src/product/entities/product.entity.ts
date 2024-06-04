@@ -53,7 +53,7 @@ export class Product {
   @Column()
   image: string;
 
-  @Column()
+  @Column({nullable: true})
   extra_parameters: string;
 
   @CreateDateColumn()

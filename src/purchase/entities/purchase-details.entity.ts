@@ -1,4 +1,10 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Purchase } from './purchase.entity';
 import { Product } from 'src/product/entities/product.entity';
 
@@ -7,7 +13,7 @@ export class PurchaseDetails {
   @PrimaryGeneratedColumn()
   id: number;
 
-   @ManyToOne(() => Purchase, (purchase) => purchase.purchaseDetails, {
+  @ManyToOne(() => Purchase, (purchase) => purchase.purchaseDetails, {
     onUpdate: 'NO ACTION',
   })
   @JoinColumn({ name: 'purchase' })
@@ -15,10 +21,11 @@ export class PurchaseDetails {
 
   @ManyToOne(() => Product, (product) => product.purchaseDetails, {
     onUpdate: 'NO ACTION',
+    onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'product' })
-  product: Product; 
+  product: Product;
 
   @Column()
-  count: number
+  count: number;
 }
