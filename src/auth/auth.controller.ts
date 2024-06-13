@@ -93,6 +93,7 @@ export class AuthController {
   @UseGuards(JwtAuthGuard)
   @Post('edit')
   async edit(@Body() updateUserDto: UpdateUserDto) {
+
     return this.userService.update(updateUserDto)
   }
 }
