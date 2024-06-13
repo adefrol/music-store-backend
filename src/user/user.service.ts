@@ -81,7 +81,8 @@ export class UsersService {
 
   async update(updateUserDto: UpdateUserDto) {
     const user = await this.findOneById(updateUserDto.id);
-
+    console.log(user);
+    
     return await this.userRepository.save({
       id: user.id,
       email: updateUserDto.email,

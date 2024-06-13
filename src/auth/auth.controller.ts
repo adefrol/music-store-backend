@@ -91,7 +91,7 @@ export class AuthController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Patch('edit')
+  @Post('edit')
   async edit(@Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(updateUserDto)
   }
