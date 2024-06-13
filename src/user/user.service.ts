@@ -12,6 +12,7 @@ import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { JwtService } from '@nestjs/jwt';
 import { MailService } from 'src/mail/mail.service';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -76,6 +77,17 @@ export class UsersService {
     });
     this.verifyEmail(user.id);
     return { user, statusCode: 200 };
+  }
+
+  async update(updateUserDto: UpdateUserDto) {
+    const user = await this.findOneById(updateUserDto.id);
+
+    return await this.userRepository.save({
+      id: user.id,
+      email: updateUserDto.email,
+      name: updateUserDto.name,
+      phone: updateUserDto.phone,
+    });
   }
 
   async verifyEmail(id: number) {

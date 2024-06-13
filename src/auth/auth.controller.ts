@@ -10,6 +10,7 @@ import {
   Get,
   UseInterceptors,
   Query,
+  Patch,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './guards/local-auth.guard';
@@ -19,6 +20,7 @@ import { RolesGuard } from './guards/roles.guard';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { GetToken } from './decorators/token.decorator';
 import { JwtService } from '@nestjs/jwt';
+import { UpdateUserDto } from 'src/user/dto/update-user.dto'
 
 @Controller('auth')
 export class AuthController {
@@ -86,5 +88,11 @@ export class AuthController {
   @Get('isLogin')
   async isLogged() {
     return { status: 200 };
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Patch('edit')
+  async edit(@Body() updateUserDto: UpdateUserDto) {
+    return this.userService.update(updateUserDto)
   }
 }
