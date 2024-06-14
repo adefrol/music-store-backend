@@ -87,6 +87,7 @@ export class UsersService {
       email: updateUserDto.email,
       name: updateUserDto.name,
       phone: updateUserDto.phone,
+      password: updateUserDto.password,
     });
   }
 
